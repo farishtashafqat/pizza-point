@@ -1,0 +1,5 @@
+{
+  "name": "pizza-point",
+  "private": true,
+  "scripts": { "dev": "npm --prefix frontend run dev", "build": "npm --prefix frontend run build", "backend": "uvicorn app.main:app --app-dir backend --reload" }
+}

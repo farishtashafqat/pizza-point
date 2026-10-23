@@ -1,0 +1,48 @@
+-- Generated menu photography for non-deal items only. Existing deal artwork is untouched.
+with images(category_slug, item_name, image_url) as (values
+  ('pizza','Chicken Tikka Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Chicken Fajita Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Chicken Tandoori Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Chicken Achar Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Pizza Point Special','/menu/items/chicken-pizza.png'),
+  ('pizza','Malai Botti','/menu/items/chicken-pizza.png'),
+  ('pizza','Chicken Lover','/menu/items/chicken-pizza.png'),
+  ('pizza','Donner Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Labnani Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Crown Crust Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Crown Kabab Crust Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Stuff Kabab Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Stuff Cheese Pizza','/menu/items/chicken-pizza.png'),
+  ('pizza','Extra Topping / Cheese Crust','/menu/items/chicken-pizza.png'),
+  ('burgers','Zinger Burger','/menu/items/chicken-burger.png'),
+  ('burgers','Zinger Burger with Cheese','/menu/items/chicken-burger.png'),
+  ('burgers','Chicken Petty Burger','/menu/items/chicken-burger.png'),
+  ('burgers','Chicken Petty Burger Cheese','/menu/items/chicken-burger.png'),
+  ('burgers','Chicken Tower Burger','/menu/items/chicken-burger.png'),
+  ('burgers','Chicken Tower Cheese Burger','/menu/items/chicken-burger.png'),
+  ('burgers','Double Decker Cheese Burger','/menu/items/chicken-burger.png'),
+  ('shawarma','Chicken Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Chicken Cheese Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Zinger Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Zinger Cheese Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Seekh Kabab Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Seekh Kabab Cheese Shawarma','/menu/items/chicken-shawarma.png'),
+  ('shawarma','Vegetable Shawarma','/menu/items/chicken-shawarma.png'),
+  ('paratha-rolls','Chicken Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('paratha-rolls','Chicken Cheese Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('paratha-rolls','Zinger Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('paratha-rolls','Zinger Cheese Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('paratha-rolls','Seekh Kabab Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('paratha-rolls','Seekh Kabab Cheese Paratha','/menu/items/chicken-paratha-roll.png'),
+  ('chicken','Chicken Piece','/menu/items/crispy-chicken.png'),
+  ('chicken','Nuggets 10 Piece','/menu/items/chicken-nuggets.png'),
+  ('chicken','Hot Wings 10 Piece','/menu/items/hot-wings.png'),
+  ('fries-sides','French Fries','/menu/items/french-fries.png'),
+  ('fries-sides','Loaded Fries','/menu/items/loaded-fries.png'),
+  ('pasta','Crispy Crunchy Pasta','/menu/items/chicken-pasta.png'),
+  ('pasta','Creamy Pasta','/menu/items/chicken-pasta.png')
+)
+update public.menu_items as item
+set image_url = images.image_url
+from images join public.menu_categories as category on category.slug = images.category_slug
+where item.category_id = category.id and item.name = images.item_name;

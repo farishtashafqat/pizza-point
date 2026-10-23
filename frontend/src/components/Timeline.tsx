@@ -1,0 +1,2 @@
+const states=['Pending','Confirmed','Preparing','Ready','Completed'];
+export default function Timeline({current='Preparing',variant}:{current?:string;variant?:'Cancelled'|'Rejected'}){if(variant)return <div className="timeline alert"><b>{variant}</b><span>This order will not move through the kitchen workflow.</span></div>; const at=states.indexOf(current);return <div className="timeline">{states.map((x,i)=><div className={i<=at?'done':''} key={x}><i>{i+1}</i><span>{x}</span></div>)}</div>}
